@@ -10,35 +10,6 @@
 }
 
 command=""
-correct_dir_structure=false
-port_available=false
-
-
-if [ -z $(ls /dev/tty.* | grep usb) ]
-then
-  exit 1
-fi
-
-while [ $(basename `pwd`) != '/' ]
-do
-  if [ $(basename `pwd`) == 'src' ] || [ $(basename `pwd`) == 'lib' ]
-  then
-    correct_dir_structure=true
-    cd ..
-    break
-  elif [ $(ls | egrep "lib|src" | wc -l) -eq 2 ]
-  then
-    correct_dir_structure=true
-    break
-  fi
-
-  cd ..
-done
-
-if ! $correct_dir_structure
-then
-  exit 1
-fi
 
 while [ $# -gt 0 ]
 do

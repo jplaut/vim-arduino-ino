@@ -35,7 +35,6 @@ function! s:InvokeArduinoCli(deploy)
 
   let l:command = s:helper_dir . "/vim-arduino " . l:flag
   let l:result = system(l:command)
-  call s:PrintStatus(v:shell_error)
   echo l:result
   call s:PrintStatus(v:shell_error)
 endfunction
