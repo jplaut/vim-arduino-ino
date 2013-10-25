@@ -16,7 +16,6 @@ port_available=false
 
 if [ -z $(ls /dev/tty.* | grep usb) ]
 then
-  echo "can't find serial port"
   exit 1
 fi
 
@@ -36,7 +35,6 @@ do
   cd ..
 done
 
-echo "correct_dir_structure" . $correct_dir_structure
 if ! $correct_dir_structure
 then
   exit 1
