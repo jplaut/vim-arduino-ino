@@ -29,14 +29,16 @@ function! s:InvokeArduinoCli(deploy)
   execute "w"
   if a:deploy
     echomsg "Compiling and deploying..." l:f_name
+    let l:result = system("ino build && ino upload")
   else
     echomsg "Compiling..." l:f_name
+    let l:result = system("ino build")
   endif
 
-  let l:command = s:helper_dir . "/vim-arduino " . l:flag
-  let l:result = system(l:command)
   echo l:result
   call s:PrintStatus(v:shell_error)
+
+  return !v:shell_error
 endfunction
 
 " Public: Compile the current pde file.
@@ -62,8 +64,9 @@ endfunction
 "
 " Returns nothing.
 function! ArduinoSerialMonitor()
-  call ArduinoDeploy()
-  echo system(s:helper_dir."/vim-arduino-serial")
+  if ArduinoDeploy()
+    echo system(s:helper_dir."/vim-arduino-serial")
+  endif
 endfunction
 
 if !exists('g:vim_arduino_map_keys')
