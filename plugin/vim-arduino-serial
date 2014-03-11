@@ -5,14 +5,37 @@ echo "use Ctrl-a, k to exit the screen utility"
 port=$(ls /dev/tty.* | grep usb)
 
 osascript -e \
-  "tell application \"iTerm\"
-    activate
-    set myterm to (current terminal)
-    tell myterm
-      set mysession to (make new session at the end of sessions)
-      tell mysession
-        exec command \"/bin/bash -l\"
-        write text \"screen $port\"
-      end tell
+  "tell application \"Terminal\"
+  activate
+
+  -- search all windows for the arduino-serial tab
+  set winlist to every window
+  local arduinoTab
+  repeat with win in winlist
+    set tablist to every tab of win
+    repeat with currentTab in tablist
+      set title to get custom title of currentTab
+      if title is equal to \"arduino-serial\" then
+        set arduinoTab to currentTab
+        set frontmost of win to true
+      end if
+    end repeat
+  end repeat
+
+  -- make new tab when arduino-serial does not exist
+  try
+    arduinoTab
+  on error
+    tell application \"System Events\"
+      set frontmost of application process \"Terminal\" to true
+      keystroke \"t\" using command down
     end tell
-   end tell"
+    set currentTabIndex to (get count of tabs of front window)
+    set arduinoTab to (tab currentTabIndex of front window)
+    set custom title of arduinoTab to \"arduino-serial\"
+  end try
+
+  tell front window
+    do script \"screen -S arduino-serial $port\" in arduinoTab
+  end tell
+end tell"
