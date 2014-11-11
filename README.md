@@ -29,6 +29,8 @@ Vim Arduino Ino can be run using the following keys:
 
 `<Leader>as` - Open a serial port in `screen`.
 
+In order for the build to complete successfully, your project directory will need to be set up like a normal ino project. For more information on ino project setup, see [here][ino-project].
+
 
 ## Options
 The default key mapping can be turned off by doing this in your `.vimrc`:
@@ -51,3 +53,4 @@ let g:vim_arduino_auto_open_serial = 1
 [ino]: http://inotool.org/
 [vim-arduino]: https://github.com/tclem/vim-arduino
 [arduino]: http://arduino.cc/en/Main/Software
+[ino-project]: http://inotool.org/quickstart
