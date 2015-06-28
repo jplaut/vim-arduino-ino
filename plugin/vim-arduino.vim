@@ -10,6 +10,10 @@ if !exists('g:vim_arduino_auto_open_serial')
   let g:vim_arduino_auto_open_serial = 0
 endif
 
+if !exists('g:vim_arduino_ino_cmd')
+  let g:vim_arduino_ino_cmd = 'ino'
+endif
+
 let s:helper_dir = expand("<sfile>:h")
 
 function! s:PrintStatus(result)
@@ -29,10 +33,10 @@ function! s:InvokeArduinoCli(deploy)
   execute "w"
   if a:deploy
     echomsg "Compiling and deploying..." l:f_name
-    let l:result = system("ino build && ino upload")
+    let l:result = system(g:vim_arduino_ino_cmd . " build && " . g:vim_arduino_ino_cmd . " upload")
   else
     echomsg "Compiling..." l:f_name
-    let l:result = system("ino build")
+    let l:result = system(g:vim_arduino_ino_cmd . " build")
   endif
 
   echo l:result

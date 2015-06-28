@@ -46,6 +46,12 @@ add this to your `.vimrc`:
 let g:vim_arduino_auto_open_serial = 1
 ```
 
+To change the command used to build and deploy :
+
+```
+let g:vim_arduino_ino_cmd = 'ano'
+```
+
 
 [ino-config]: http://inotool.org/quickstart#configuration-files
 [ino-source]: https://pypi.python.org/pypi/ino/#downloads
