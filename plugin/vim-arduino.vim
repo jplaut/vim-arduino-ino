@@ -64,9 +64,7 @@ endfunction
 "
 " Returns nothing.
 function! ArduinoSerialMonitor()
-  if ArduinoDeploy()
-    echo system(s:helper_dir."/vim-arduino-serial")
-  endif
+  echo system(s:helper_dir."/vim-arduino-serial")
 endfunction
 
 if !exists('g:vim_arduino_map_keys')
