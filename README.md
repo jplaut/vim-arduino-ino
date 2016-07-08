@@ -11,10 +11,8 @@ The plugin is structured for use with [Pathogen][pathogen] so installation
 should be easy, assuming you have Pathogen installed.
 
 ## Requirements
-[Ino][ino] must be installed on your computer for this plugin to work.
-To install Ino, you can run ```easy_install ino``` or ```pip install ino```
-if you have python installed. Alternately, you can download the [source][ino-source]
-and run ```make install``` inside the directory.
+[Ano][ano] must be installed on your computer for this plugin to work (Previously, Ino was used, but that repo is no longer maintained).
+To install Ano, you can install from source using the instructions [here][ano] or ```npm install ano``` if you have npm installed.
 
 If you plan on using this plugin with a board other than an Arduino
 Uno, you'll need to configure Ino to use that board by following
@@ -54,9 +52,8 @@ let g:vim_arduino_ino_cmd = 'ano'
 
 
 [ino-config]: http://inotool.org/quickstart#configuration-files
-[ino-source]: https://pypi.python.org/pypi/ino/#downloads
 [pathogen]: http://www.vim.org/scripts/script.php?script_id=2332
-[ino]: http://inotool.org/
+[ano]: https://github.com/scottdarch/Arturo
 [vim-arduino]: https://github.com/tclem/vim-arduino
 [arduino]: http://arduino.cc/en/Main/Software
 [ino-project]: http://inotool.org/quickstart
