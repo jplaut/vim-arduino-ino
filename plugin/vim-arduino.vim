@@ -24,6 +24,7 @@ endfunction
 "
 " Returns nothing.
 function! s:InvokeArduinoCli(deploy)
+  call s:ArduinoKillMonitor()
   let l:flag = a:deploy ? "-d" : "-c"
   let l:f_name = expand('%:p')
   execute "w"
@@ -39,6 +40,13 @@ function! s:InvokeArduinoCli(deploy)
   call s:PrintStatus(v:shell_error)
 
   return !v:shell_error
+endfunction
+
+" Private: Release the /dev/tty.usb* port so we can recompile
+"
+" Returns nothing.
+function! s:ArduinoKillMonitor()
+  let output = system("screen -X -S arduino-serial quit")
 endfunction
 
 " Public: Compile the current pde file.
@@ -64,9 +72,8 @@ endfunction
 "
 " Returns nothing.
 function! ArduinoSerialMonitor()
-  if ArduinoDeploy()
-    echo system(s:helper_dir."/vim-arduino-serial")
-  endif
+  call s:ArduinoKillMonitor()
+  echo system(s:helper_dir."/vim-arduino-serial")
 endfunction
 
 if !exists('g:vim_arduino_map_keys')
