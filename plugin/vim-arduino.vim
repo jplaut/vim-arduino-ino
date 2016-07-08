@@ -76,7 +76,6 @@ endfunction
 "
 " Returns nothing.
 function! ArduinoSerialMonitor()
-  call s:ArduinoKillMonitor()
   echo system(s:helper_dir."/vim-arduino-serial")
 endfunction
 
