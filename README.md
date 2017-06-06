@@ -1,5 +1,8 @@
 # Vim Arduino Ino
 
+## UPDATE: THIS PROJECT IS DEPRECATED
+### As of now, the Arduino Ino command line tool [does not work](https://github.com/amperka/ino/issues/71) with newer versions of the Arduino app. Thus, this tool will not work unless you install an older version of the Arduino app. If someone wants to contribute an update to Ino that supports newer versions of the app, they can submit a pull request to the [current repo](https://github.com/scottdarch/Arturo).
+
 This script is based on [Vim Arduino][vim-arduino], but uses the
 [Ino][ino] command line utility instead of the Java Arduino compiler.
 It therefore runs in 64-bit environments and allows for compiling and
