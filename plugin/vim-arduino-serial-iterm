@@ -1,0 +1,16 @@
+#!/bin/sh
+
+port=$(ls /dev/tty.* | grep usb)
+
+osascript -e \
+"
+tell application \"iTerm2-.9\"
+    tell current session of current window
+        set newTab to (split horizontally with default profile)
+        select newTab
+        tell newTab
+            write text \"screen -S arduino-serial $port\"
+        end tell
+    end tell
+end tell
+"

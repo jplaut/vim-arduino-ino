@@ -14,6 +14,10 @@ if !exists('g:vim_arduino_ino_cmd')
   let g:vim_arduino_ino_cmd = 'ino'
 endif
 
+if !exists('g:vim_arduino_serial_terminal_script')
+  let g:vim_arduino_serial_terminal_script = 'vim-arduino-serial'
+endif
+
 let s:helper_dir = expand("<sfile>:h")
 
 function! s:PrintStatus(result)
@@ -50,7 +54,7 @@ endfunction
 "
 " Returns nothing.
 function! s:ArduinoKillMonitor()
-  let output = system("screen -X -S arduino-serial quit")
+  let output = system("screen -X -S" . g:vim_arduino_serial_terminal_script . "quit")
 endfunction
 
 " Public: Compile the current pde file.
@@ -76,7 +80,7 @@ endfunction
 "
 " Returns nothing.
 function! ArduinoSerialMonitor()
-  echo system(s:helper_dir."/vim-arduino-serial")
+  echo system(s:helper_dir."/".g:vim_arduino_serial_terminal_script)
 endfunction
 
 if !exists('g:vim_arduino_map_keys')
